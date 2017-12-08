@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addItem } from '../actions'
+import { addItem, updateScore } from '../actions'
 import ListItem from './ListItem';
 
 class List extends Component{
@@ -9,9 +9,13 @@ class List extends Component{
     super();
     this.state = {
       newItem: '',
+      sortBy: 'latest'
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateVote = this.updateVote.bind(this);
+    this.sortItems = this.sortItems.bind(this);
+    this.setSortBy = this.setSortBy.bind(this);
   }
   handleChange(e){
     let newItem = e.target.value;
@@ -33,14 +37,43 @@ class List extends Component{
     })
 
   }
+  updateVote(itemId, currentScore, valueToAdd){
+    this.props.updateScore(itemId, currentScore, valueToAdd);
+  }
+  sortItems(sortBy){
+    
+    const popular = (a, b) => a.score < b.score;
+    const latest = (a, b) => a.created_at < b.created_at;
+
+    const sortedList = Array.from(this.props.listInfo.items)
+                          .sort(this.state.sortBy === 'popular'? popular : latest);
+                          
+   const listItems =  sortedList.map((item) => {
+      return (
+        <ListItem key={item._id} listId={this.props.listInfo._id} itemInfo={item} updateVote={this.updateVote} />
+      )
+    });
+
+    return listItems;
+   
+  }
+  setSortBy(e){
+    this.setState({
+      sortBy: e.target.id
+    })
+  }
   render(){
     return (
       <div className="list">
-        <h2>{this.props.listInfo.title}</h2>
+        <header>
+          <h2>{this.props.listInfo.title}</h2>
+          <div className='list__sorting'>
+            <p>Sort by:</p>
+            <button onClick={this.setSortBy} id='popular'>Most Popular <span role="img" aria-label="fire">🔥</span></button>
+            <button onClick={this.setSortBy} id='latest'>Latest <span role="img" aria-label="clock">🕘</span></button></div>
+        </header>
         <ul>
-          {this.props.listInfo.items.map((item) => {
-            return <ListItem key={item._id} listId={this.props.listInfo._id} itemInfo={item} />
-          })}
+          {this.sortItems()}
           <li className="list__item">
             <form onSubmit={this.handleSubmit}>
               <label htmlFor="newItem" className="visually-hidden">Add To List:</label>
@@ -55,7 +88,7 @@ class List extends Component{
 } 
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({addItem: addItem}, dispatch)
+  return bindActionCreators({addItem: addItem, updateScore: updateScore}, dispatch)
 }
 
-export default connect(mapDispatchToProps, { addItem })(List);
+export default connect(mapDispatchToProps, { addItem, updateScore })(List);

@@ -31,8 +31,24 @@ h1{
 
 main{
   display: flex;
+  /* flex-direction: row-reverse; */
   flex-wrap: wrap;
 }
+
+.App header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+
+
+.App input{
+  padding: 20px;
+  
+}
+
 
 .list{
   border: 2px solid black;
@@ -74,3 +90,16 @@ main{
   font-weight: bold;
 }
 
+.list header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.list__sorting{
+  display: flex;
+}
+.list__sorting button {
+  margin-left: 10px;
+}

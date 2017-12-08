@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchLists } from '../actions';
+import { bindActionCreators } from 'redux';
+import { fetchLists, addList } from '../actions';
 
 import List from './List';
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      listInput: ''
+    }
+
+    this.addList = this.addList.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
   componentDidMount(){
     this.props.fetchLists();
   }
@@ -16,14 +26,33 @@ class App extends Component {
       return (
         <List key={listKey} listInfo={lists[listKey]} />
       )
-    })
+    });
 
-   
+  }
+  handleChange(e){
+    this.setState({
+      listInput: e.target.value
+    })
+  }
+  addList(e){
+    e.preventDefault();
+    const newListTitle = this.state.listInput;
+    console.log(newListTitle)
+    this.props.addList(newListTitle);
+
+    this.setState({
+      listInput: ''
+    });
   }
   render() {
     return (
       <div className="App">
-        <h1>Listed</h1>
+        <header>
+          <h1>Listed</h1>
+          <form onSubmit={this.addList} action="" value={this.state.listInput}>
+            <input onChange={this.handleChange} type="text" placeholder="add a list"/>
+          </form>
+        </header>
         <main>
             {this.renderLists()}
         </main>
@@ -33,8 +62,11 @@ class App extends Component {
 }
 
 
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ addList: addList, fetchLists: fetchLists }, dispatch)
+}
+
 function mapStateToProps(state){
   return { lists: state.lists }
 }
-// should edit this to be match dispatch to props function 
-export default connect(mapStateToProps, { fetchLists })(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
