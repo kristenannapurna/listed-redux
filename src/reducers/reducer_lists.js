@@ -10,9 +10,9 @@ export default function(state = {}, action){
       return _.indexBy(action.payload.data, '_id');
     
     case ADD_ITEM: { 
-      let newState = {...state};
-      let newItem = action.payload.data.item;
-      let listId = action.payload.data.item.belongs_to;
+      const newState = {...state};
+      const newItem = action.payload.data.item;
+      const listId = action.payload.data.item.belongs_to;
       
       newState[listId].items.push(newItem);
 
@@ -20,9 +20,9 @@ export default function(state = {}, action){
     }
 
     case ADD_LIST: {
-      let newState = {...state};
-      let newList = action.payload.data.list;
-      let listId = action.payload.data.list._id;
+      const newState = {...state};
+      const newList = action.payload.data.list;
+      const listId = action.payload.data.list._id;
       newState[listId] = newList;
       
       return newState;
