@@ -9,7 +9,7 @@ export default function(state = {}, action){
       // this underscores method takes a datalist and a desired key for each item and returns an object with an index of each item
       return _.indexBy(action.payload.data, '_id');
     
-    case ADD_ITEM:{ 
+    case ADD_ITEM: { 
       let newState = {...state};
       let newItem = action.payload.data.item;
       let listId = action.payload.data.item.belongs_to;
@@ -29,18 +29,13 @@ export default function(state = {}, action){
     }
     
     case UPDATE_SCORE: {
-        let newState = { ...state };
-        let listId = action.payload.data.item.belongs_to;
+        const newState = { ...state };
+        const listId = action.payload.data.item.belongs_to;
         let listItems = newState[listId].items;
-        let newItem = action.payload.data.item;
-        let itemId = action.payload.data.item._id;
-
-        // iterate through the current state items to find the one to update
-        listItems.forEach((item, index) => {
-          if(item._id === itemId){
-            listItems[index] = newItem;
-          }
-        });
+        const newItem = action.payload.data.item;
+        const itemId = action.payload.data.item._id;
+        const index = listItems.findIndex((item) => item._id === itemId);
+        listItems[index] = newItem;
         
         return newState;
     }

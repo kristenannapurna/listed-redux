@@ -37,7 +37,6 @@ class App extends Component {
   addList(e){
     e.preventDefault();
     const newListTitle = this.state.listInput;
-    console.log(newListTitle)
     this.props.addList(newListTitle);
 
     this.setState({
