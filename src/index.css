@@ -1,4 +1,5 @@
 /* Light Grey #E3E3E3 */
+/* Red #CC1C22 */
 
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
 
@@ -39,7 +40,7 @@ h2{
   display: inline-block;
   padding: 10px 15px;
   position: relative;
-  left: -80px;
+  left: -40px;
   font-size: 30px;
 }
 
@@ -71,7 +72,7 @@ main{
 .list{
 
   background: #F7F4F4;
-  padding: 25px 50px;
+  padding: 25px 10px;
   flex: 0 0 45%;
   /* margin: 0px 25px 50px 25px; */
   margin-bottom: 50px;
@@ -94,6 +95,7 @@ main{
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .list header h2{
@@ -104,12 +106,77 @@ main{
   display: flex;
   align-items: center;
   text-transform: uppercase;
+  font-weight: 600;
+}
+
+.list__sorting p{
+  margin-right: 15px;
 }
 
 .list__sorting button{
   display: flex;
+  background: none;
+  border: none;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
+
 .list__sorting img{
+  width: 12px;
+  margin-right: 3px;
+}
+
+.list__item{
+  color: #CC1C22;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  font-weight: 600;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 3px solid white;
+}
+
+.list__item:last-child{
+  border-bottom: none;
+  align-self: flex-end;
+}
+
+.list__item button{
+  background: white;
+  padding: 10px;
+  border: none;
+  text-transform: uppercase;
+  font-size: 18px;
+}
+
+.list__item img{
   width: 20px;
+}
+
+.list__item form{
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.list__item form input{
+  border: none;
+  text-transform: uppercase;
+  font-size: 16px;
+  padding: 10px 20px;
+  width: 50%;
+  font-weight: 600;
+}
+
+.list__item ::-webkit-input-placeholder {
+  color: #E2E2E2;
+}
+
+.scoreCard__score{
+  color: #444444;
+  margin-right: 20px;
 }
