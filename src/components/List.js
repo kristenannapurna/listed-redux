@@ -4,6 +4,10 @@ import { bindActionCreators } from 'redux';
 import { addItem, updateScore } from '../actions'
 import ListItem from './ListItem';
 
+// images
+import latest from '../images/latest.png';
+import popular from '../images/popular.png';
+
 class List extends Component{
   constructor(){
     super();
@@ -69,8 +73,9 @@ class List extends Component{
           <h2>{this.props.listInfo.title}</h2>
           <div className='list__sorting'>
             <p>Sort by:</p>
-            <button onClick={this.setSortBy} id='popular'>Most Popular <span role="img" aria-label="fire">🔥</span></button>
-            <button onClick={this.setSortBy} id='latest'>Latest <span role="img" aria-label="clock">🕘</span></button></div>
+            
+            <button onClick={this.setSortBy} id='popular'><img src={popular}alt="thumbs up icon"/>Most Popular</button>
+            <button onClick={this.setSortBy} id='latest'><img src={latest} alt="" />Latest</button></div>
         </header>
         <ul>
           {this.sortItems()}
