@@ -93,7 +93,7 @@ class List extends Component{
 } 
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({addItem: addItem, updateScore: updateScore}, dispatch)
+  return bindActionCreators({addItem, updateScore}, dispatch)
 }
 
-export default connect(mapDispatchToProps, { addItem, updateScore })(List);
+export default connect(null, mapDispatchToProps)(List);
