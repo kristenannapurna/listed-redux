@@ -28,6 +28,11 @@ body {
 
 }
 
+ul{
+  margin: 0;
+  padding: 0 20px;
+}
+
 h1{
   background: #444;
   color: white;
@@ -41,7 +46,7 @@ h2{
   padding: 10px 15px;
   position: relative;
   left: -40px;
-  font-size: 30px;
+  font-size: 23px;
 }
 
 .App > header{
@@ -73,7 +78,7 @@ main{
 
   background: #F7F4F4;
   padding: 25px 10px;
-  flex: 0 0 45%;
+  flex: 0 1 600px;
   /* margin: 0px 25px 50px 25px; */
   margin-bottom: 50px;
   position: relative;
@@ -107,6 +112,8 @@ main{
   align-items: center;
   text-transform: uppercase;
   font-weight: 600;
+  margin-right: 10px;
+  font-size: 12px;
 }
 
 .list__sorting p{
@@ -133,7 +140,7 @@ main{
   list-style: none;
   display: flex;
   align-items: center;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 600;
   justify-content: space-between;
   padding: 20px;
@@ -149,12 +156,19 @@ main{
   background: white;
   padding: 10px;
   border: none;
+  margin-right: 10px;
   text-transform: uppercase;
-  font-size: 18px;
+  font-size: 13px;
 }
+
+
+
 
 .list__item img{
   width: 20px;
+  margin-right: 5px;
+  position: relative;
+  top: 4px;
 }
 
 .list__item form{
@@ -180,3 +194,4 @@ main{
   color: #444444;
   margin-right: 20px;
 }
+
